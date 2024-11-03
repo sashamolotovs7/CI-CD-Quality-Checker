@@ -23,14 +23,16 @@ jobs:
           node -v
           whoami
           pwd
-          printenv | sort  # List environment variables for debugging
+          printenv | sort  # Log environment variables for debugging
           ls -la  # List all files in root
 
       - name: Install dependencies
         run: npm install
 
       - name: Install Cypress
-        run: npx cypress install
+        run: |
+          npx cypress install
+          chmod +x ./node_modules/.bin/cypress  # Explicitly set executable permission
 
       - name: Verify Cypress Installation
         run: |
@@ -38,7 +40,8 @@ jobs:
           npx cypress --version
 
       - name: Run Cypress Component Tests
+        env:
+          DEBUG: "cypress:*"  # Enable Cypress debug logging
         run: |
           echo "Attempting to run Cypress tests..."
-          chmod +x ./node_modules/.bin/cypress || true  # Ensure Cypress binary is executable
           npx cypress run --component
