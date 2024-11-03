@@ -11,6 +11,7 @@ This project is a full-stack application designed to implement a CI/CD pipeline 
   - [Technology Stack](#technology-stack)
   - [Installation](#installation)
 
+
 ## Features
 - Automated testing with Cypress for component validation.
 - Continuous Integration (CI) workflow triggered on Pull Requests to the `develop` branch.
