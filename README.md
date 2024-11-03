@@ -24,8 +24,10 @@ This project is a full-stack application designed to implement a CI/CD pipeline 
 - **Testing**: Cypress
 - **CI/CD**: GitHub Actions, Render
 
+
 ## Installation
 1. Clone the repository:
    ```bash
    git clone [YOUR_REPO_URL]
 // Temporary change for Cypress testing
+Recreating branch with a clear difference for Cypress test
