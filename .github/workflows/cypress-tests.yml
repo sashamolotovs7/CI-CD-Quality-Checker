@@ -27,8 +27,11 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
 
-      - name: Grant execute permission to Cypress binary
-        run: chmod +x ./node_modules/.bin/cypress
+      - name: List Cypress Binary Location
+        run: ls -la ./node_modules/.bin/
 
-      - name: Run Cypress component tests
-        run: npm run test-component
+      - name: Check Cypress Version
+        run: npx cypress --version
+
+      - name: Run Cypress Component Tests
+        run: npx cypress run --component
