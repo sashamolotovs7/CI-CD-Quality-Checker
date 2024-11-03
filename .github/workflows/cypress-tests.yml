@@ -18,30 +18,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Log Node.js and Environment Details
-        run: |
-          node -v
-          whoami
-          pwd
-          printenv | sort  # Log environment variables for debugging
-          ls -la  # List all files in root
-
       - name: Install dependencies
         run: npm install
 
       - name: Install Cypress
-        run: |
-          npx cypress install
-          chmod +x ./node_modules/.bin/cypress  # Explicitly set executable permission
-
-      - name: Verify Cypress Installation
-        run: |
-          ls -la ./node_modules/.bin/
-          npx cypress --version
+        run: npx cypress install
 
       - name: Run Cypress Component Tests
-        env:
-          DEBUG: "cypress:*"  # Enable Cypress debug logging
-        run: |
-          echo "Attempting to run Cypress tests..."
-          npx cypress run --component
+        run: npx cypress run --component --headless
