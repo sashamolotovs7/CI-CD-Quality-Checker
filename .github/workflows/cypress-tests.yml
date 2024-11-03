@@ -21,13 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Cypress
-        run: |
-          npx cypress install
-          chmod +x ./node_modules/.bin/cypress  # Ensure Cypress binary is executable
-
-      - name: Run Cypress Component Tests
-        shell: bash
-        run: |
-          echo "Starting Cypress tests..."
-          ./node_modules/.bin/cypress run --component --headless
+      - name: Run Cypress in Docker
+        uses: cypress-io/github-action@v2  # Cypress GitHub Action with Docker support
+        with:
+          command: run --component --headless  # Use component test mode in headless mode
