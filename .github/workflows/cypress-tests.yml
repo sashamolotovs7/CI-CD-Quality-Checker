@@ -22,6 +22,7 @@ jobs:
         run: npm install
 
       - name: Run Cypress Component Tests
-        uses: cypress-io/github-action@v4  # Updated to v4 for Node 20 compatibility
+        uses: cypress-io/github-action@v4
         with:
-          args: run --component --headless  # Corrected command syntax
+          component: true  # Runs component tests
+          headless: true  # Runs in headless mode
