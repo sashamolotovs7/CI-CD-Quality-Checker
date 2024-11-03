@@ -18,8 +18,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Log Node.js Version
-        run: node -v
+      - name: Log Node.js and Environment Details
+        run: |
+          node -v
+          whoami
+          pwd
+          printenv | sort  # List environment variables for debugging
+          ls -la  # List all files in root
 
       - name: Install dependencies
         run: npm install
@@ -27,11 +32,13 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
 
-      - name: List Cypress Binary Location
-        run: ls -la ./node_modules/.bin/
-
-      - name: Check Cypress Version
-        run: npx cypress --version
+      - name: Verify Cypress Installation
+        run: |
+          ls -la ./node_modules/.bin/
+          npx cypress --version
 
       - name: Run Cypress Component Tests
-        run: npx cypress run --component
+        run: |
+          echo "Attempting to run Cypress tests..."
+          chmod +x ./node_modules/.bin/cypress || true  # Ensure Cypress binary is executable
+          npx cypress run --component
