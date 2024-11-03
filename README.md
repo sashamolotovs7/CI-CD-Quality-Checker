@@ -32,3 +32,4 @@ This project is a full-stack application designed to implement a CI/CD pipeline 
    git clone [YOUR_REPO_URL]
 // Temporary change for Cypress testing
 // Another test change for Cypress workflow
+Temporary change for Cypress workflow test
