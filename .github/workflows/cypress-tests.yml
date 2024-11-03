@@ -11,18 +11,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to v3
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3  # Updated to v3
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'  # You can also try '20' if compatible with your setup
+          node-version: '20'  # Explicitly using Node.js 20
 
       - name: Log Node.js Version
         run: node -v
 
       - name: Install dependencies
         run: npm install
+
+      - name: Check if Cypress test-component script exists
+        run: |
+          if ! npm run | grep -q 'test-component'; then
+            echo "test-component script not found!" >&2
+            exit 1
+          fi
 
       - name: Run Cypress component tests
         run: npm run test-component
