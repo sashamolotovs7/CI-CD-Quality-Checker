@@ -21,8 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Verify Cypress Installation
+        run: npx cypress --version
+
       - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v4
         with:
-          spec: 'cypress/component/**/*'   # Adjust to match the path to your component tests
-          browser: chrome                  # Specify the browser if needed
+          spec: 'cypress/component/**/*'   # Update to the actual path of your component tests
+          browser: chrome
+          working-directory: './'          # Ensure it runs in the correct directory
+        env:
+          CI: true                         # This ensures Cypress runs in CI mode
