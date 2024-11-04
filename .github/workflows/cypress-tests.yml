@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated to v4 for the latest version
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # Updated to v4 for the latest version
         with:
           node-version: '20'
 
@@ -25,9 +25,9 @@ jobs:
     needs: install  # Ensures the install job runs before the test job
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Use the latest version for checkout
 
       - name: Run Cypress Component Tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v4  # Ensure you're using the latest version of Cypress action
         with:
           command: 'npx cypress run --component --headless'  # Specifies the Cypress command for component testing
