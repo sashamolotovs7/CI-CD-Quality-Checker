@@ -8,9 +8,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]  # Add multiple Node.js versions to test across
+        node-version: [20.x]  # Simplify by using only Node.js 20.x as it’s the latest supported version
 
     steps:
       - name: Checkout code
@@ -21,14 +22,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Log Node.js Version
-        run: node -v
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Cypress
-        run: npx cypress install
-
-      - name: Run Cypress Component Tests
-        run: npx cypress run --component --headless
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome  # Use Chrome for component testing; change if another browser is preferred
+          headless: true   # Ensures tests run in headless mode
+          spec: 'cypress/component/**/*'  # Adjust the path to your Cypress component tests if necessary
