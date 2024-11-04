@@ -30,4 +30,4 @@ jobs:
       - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v5  # Ensure this is the latest version
         with:
-          command: 'npx cypress run --component --headless'
+          command: 'npx cypress run --component --headless'  # Use the command to run tests
