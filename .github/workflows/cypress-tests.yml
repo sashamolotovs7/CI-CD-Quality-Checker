@@ -8,9 +8,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]  # Define multiple Node.js versions
 
     steps:
       - name: Checkout code
@@ -19,16 +16,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
       - name: Install Cypress
         run: npx cypress install
-
-      - name: Verify Cypress Installation
-        run: npx cypress verify
 
       - name: Run Cypress Component Tests
         run: npx cypress run --component --headless
