@@ -16,13 +16,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Make sure this is compatible with your project
+          node-version: '20'  # Ensure compatibility
 
       - name: Install dependencies
         run: npm install
 
       - name: Install Cypress
-        run: npx cypress install
+        run: |
+          npm install cypress
+          chmod +x ./node_modules/.bin/cypress  # Ensure Cypress binary is executable
+
+      - name: Verify Cypress Installation
+        run: npx cypress verify  # Verify installation
 
       - name: Run Cypress Component Tests
-        run: npx cypress run --component --headless
+        run: npx cypress run --component --headless  # Run tests
