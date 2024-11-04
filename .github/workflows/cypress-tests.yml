@@ -9,10 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x]  # Simplify by using only Node.js 20.x as it’s the latest supported version
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,11 +16,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '20'
 
-      - name: Cypress run
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v4
         with:
-          browser: chrome  # Use Chrome for component testing; change if another browser is preferred
-          headless: true   # Ensures tests run in headless mode
-          spec: 'cypress/component/**/*'  # Adjust the path to your Cypress component tests if necessary
+          spec: 'cypress/component/**/*'   # Adjust to match the path to your component tests
+          browser: chrome                  # Specify the browser if needed
