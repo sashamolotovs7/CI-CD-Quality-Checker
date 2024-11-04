@@ -26,6 +26,9 @@ jobs:
           npm install cypress
           chmod +x ./node_modules/.bin/cypress  # Ensure Cypress binary is executable
 
+      - name: Log Cypress Binary Location
+        run: ls -la ./node_modules/.bin/  # Check if Cypress binary exists
+
       - name: Verify Cypress Installation
         run: npx cypress verify  # Verify installation
 
