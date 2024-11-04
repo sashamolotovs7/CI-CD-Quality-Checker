@@ -22,12 +22,15 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: install  # Ensures the install job runs before the test job
+    needs: install
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Log Node.js Version
+        run: node -v  # Log the Node.js version
+
       - name: Run Cypress Component Tests
-        uses: cypress-io/github-action@v5  # Updated to v5 or latest
+        uses: cypress-io/github-action@v5
         with:
-          command: 'npx cypress run --component --headless'  # Specifies the Cypress command for component testing
+          command: 'npx cypress run --component --headless'
