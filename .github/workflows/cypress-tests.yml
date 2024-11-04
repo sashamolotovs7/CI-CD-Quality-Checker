@@ -24,5 +24,4 @@ jobs:
       - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v4
         with:
-          component: true  # Runs component tests
-          headless: true  # Runs in headless mode
+          command: 'npx cypress run --component --headless'  # Specifies the Cypress command for component testing
