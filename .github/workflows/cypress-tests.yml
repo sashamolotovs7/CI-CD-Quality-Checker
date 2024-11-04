@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '20'  # Use the latest stable version
 
       - name: Install dependencies
         run: npm install
@@ -26,9 +26,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Log Node.js Version
-        run: node -v  # Log the Node.js version
 
       - name: Run Cypress Component Tests
         uses: cypress-io/github-action@v5
